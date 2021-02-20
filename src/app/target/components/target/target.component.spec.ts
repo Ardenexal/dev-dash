@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TargetComponent } from './target.component';
+import {TargetComponent} from './target.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {MenubarModule} from "primeng/menubar";
 
 describe('TargetComponent', () => {
   let component: TargetComponent;
@@ -8,9 +10,10 @@ describe('TargetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TargetComponent ]
+      declarations: [TargetComponent],
+      imports: [RouterTestingModule, MenubarModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

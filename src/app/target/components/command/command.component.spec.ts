@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CommandComponent } from './command.component';
+import {CommandComponent} from './command.component';
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('CommandComponent', () => {
   let component: CommandComponent;
@@ -8,9 +9,10 @@ describe('CommandComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommandComponent ]
+      declarations: [CommandComponent],
+      imports: [RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

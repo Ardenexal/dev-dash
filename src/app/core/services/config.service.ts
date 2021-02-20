@@ -17,12 +17,14 @@ export class ConfigService {
   private commands: Command[];
 
   constructor(private electronService: ElectronService) {
+  }
+
+  initConfig() {
     if (this.electronService.isElectron) {
       this.electronService.ipcRenderer.invoke('config').then((config: Config) => {
         this.configObservable.next(config);
       });
     }
-
   }
 
   getConnection(connectionKey: string): Observable<Connection> {
