@@ -10,7 +10,6 @@ import {AppRoutingModule} from './app-routing.module';
 // NG Translate
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {DetailModule} from './detail/detail.module';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -32,7 +31,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
-    DetailModule,
     AppRoutingModule,
     PanelMenuModule,
     TranslateModule.forRoot({
