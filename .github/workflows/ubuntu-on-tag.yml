@@ -65,5 +65,5 @@ jobs:
     - name: Cache ubuntu release
       uses: actions/upload-artifact@v1
       with:
-        name: dev-dash ${{ matrix.node-version }}.AppImage
-        path: ./release/dev-dash ${{ matrix.node-version }}.AppImage
+        name: dev-dash ${{ github.event.release.tag_name }}.AppImage
+        path: ./release/dev-dash ${{ github.event.release.tag_name }}.AppImage

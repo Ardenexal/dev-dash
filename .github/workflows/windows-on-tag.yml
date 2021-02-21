@@ -50,5 +50,5 @@ jobs:
     - name: Cache Windows MSI release
       uses: actions/upload-artifact@v1
       with:
-        name: dev-dash ${{ matrix.node-version }}.exe
-        path: ./release/dev-dash ${{ matrix.node-version }}.exe
+        name: dev-dash ${{ github.event.release.tag_name }}.exe
+        path: ./release/dev-dash ${{ github.event.release.tag_name }}.exe
