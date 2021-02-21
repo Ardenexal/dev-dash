@@ -50,8 +50,3 @@ jobs:
       run: npm run lint
     - name: Build the app
       run: npm run electron:build
-    - name: Cache Windows MSI release
-      uses: actions/upload-artifact@v1
-      with:
-        name: dev-dash ${{ matrix.node-version }}.exe
-        path: ./release/dev-dash ${{ matrix.node-version }}.exe
