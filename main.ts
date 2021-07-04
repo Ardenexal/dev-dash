@@ -1,6 +1,9 @@
-import { app, BrowserWindow, screen } from 'electron';
+import {app, BrowserWindow, ipcMain, IpcMainInvokeEvent, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import {IPCMainHandler} from "./node/events/IPCMainHandler/IPCMainHandler";
+
+const ElectronStore = require('electron-store');
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -8,8 +11,7 @@ const args = process.argv.slice(1),
 
 function createWindow(): BrowserWindow {
 
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -19,14 +21,13 @@ function createWindow(): BrowserWindow {
     height: size.height,
     webPreferences: {
       nodeIntegration: true,
-      allowRunningInsecureContent: (serve) ? true : false,
+      allowRunningInsecureContent: serve,
       contextIsolation: false,  // false if you want to run 2e2 test with Spectron
-      enableRemoteModule : true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
+      enableRemoteModule: true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
     },
   });
 
   if (serve) {
-
     win.webContents.openDevTools();
 
     require('electron-reload')(__dirname, {
@@ -54,6 +55,7 @@ function createWindow(): BrowserWindow {
 }
 
 try {
+  const ipcMainHandler = new IPCMainHandler();
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
@@ -75,6 +77,17 @@ try {
     if (win === null) {
       createWindow();
     }
+  });
+  ipcMain.handle('run-command', async (event: IpcMainInvokeEvent, key: string) => {
+    await ipcMainHandler.runCommand(event, key);
+  });
+
+  ipcMain.handle('config', async (event, key) => {
+    return await ipcMainHandler.config(event, key);
+  });
+
+  ipcMain.handle('openSettings', async () => {
+    await ipcMainHandler.openSettings();
   });
 
 } catch (e) {

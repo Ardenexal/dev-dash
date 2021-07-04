@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <h1>Dev Tools <button class="btn btn-link float-right" (click)="settings()">
+        <i class="pi pi-cog"></i></button>
+      </h1>
+      <p-panelMenu [model]="connections$|async"></p-panelMenu>
+    </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

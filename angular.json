@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-electron": {
+    "halaxy-dev-tools": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -16,10 +16,18 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "allowedCommonJsDependencies": [
+              "electron-store"
+            ],
             "assets": [
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -81,24 +89,24 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "angular-electron:build"
+            "browserTarget": "halaxy-dev-tools:build"
           },
           "configurations": {
             "dev": {
-              "browserTarget": "angular-electron:build:dev"
+              "browserTarget": "halaxy-dev-tools:build:dev"
             },
             "web": {
-              "browserTarget": "angular-electron:build:web"
+              "browserTarget": "halaxy-dev-tools:build:web"
             },
             "production": {
-              "browserTarget": "angular-electron:build:production"
+              "browserTarget": "halaxy-dev-tools:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-electron:build"
+            "browserTarget": "halaxy-dev-tools:build"
           }
         },
         "test": {
@@ -110,6 +118,8 @@
             "karmaConfig": "src/karma.conf.js",
             "scripts": [],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.scss"
             ],
             "assets": [
@@ -132,7 +142,7 @@
         }
       }
     },
-    "angular-electron-e2e": {
+    "halaxy-dev-tools-e2e": {
       "root": "e2e",
       "projectType": "application",
       "architect": {
@@ -148,14 +158,14 @@
       }
     }
   },
-  "defaultProject": "angular-electron",
+  "defaultProject": "halaxy-dev-tools",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "hx",
       "style": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "hx"
     }
   }
 }
