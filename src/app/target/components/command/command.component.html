@@ -1,0 +1,45 @@
+<div *ngIf="command">
+  <div class="card my-2">
+    <div class="card-body py-1">
+      <h1 class="d-inline-block">{{command.label}}</h1>
+      <div class="nav float-right p-2">
+        <button class="btn btn-success float-right" (click)="start()" [disabled]="isStarted===true">Start</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isStarted">
+
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">Arguments</div>
+          <div class="card-body">
+            <form [formGroup]="form" *ngIf="isStarted === false">
+              <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">Command</div>
+          <div class="card-body">
+            <div class="bg-dark font-monospace h-50 p-3">
+              <span class="text-white">{{commandOutput}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="command-output card" *ngIf="isStarted">
+    <div class="card-header">Output</div>
+    <div class="card-body p-0">
+      <div class="bg-dark font-monospace overflow-auto p-3" id="log-output" #output>
+        <p class="log text-{{log.type}}" *ngFor="let log of logs">{{log.message}}</p>
+      </div>
+    </div>
+  </div>
+</div>

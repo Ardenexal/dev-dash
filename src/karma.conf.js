@@ -36,8 +36,7 @@ module.exports = function (config) {
             nodeIntegration: true,
             nodeIntegrationInSubFrames: true,
             allowRunningInsecureContent: true,
-            enableRemoteModule: true,
-            contextIsolation: false
+            enableRemoteModule: true
           }
         }
       }

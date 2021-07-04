@@ -1,8 +1,5 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -10,11 +7,6 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -28,7 +20,6 @@
               "electron-store"
             ],
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
@@ -79,7 +70,7 @@
             },
             "production": {
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "namedChunks": false,
               "aot": true,
@@ -142,9 +133,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
+            "eslintConfig": ".eslintrc.json",
             "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
+              "src/**.ts",
+              "main.ts"
             ]
           }
         }
@@ -157,8 +149,9 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
+            "eslintConfig": ".eslintrc.json",
             "lintFilePatterns": [
-              "e2e/**/*.ts"
+              "e2e/**.ts"
             ]
           }
         }
