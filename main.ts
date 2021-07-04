@@ -1,13 +1,13 @@
 import {app, BrowserWindow, ipcMain, IpcMainInvokeEvent, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import {IPCMainHandler} from "./node/events/IPCMainHandler/IPCMainHandler";
+import {IPCMainHandler} from './node/events/IPCMainHandler/IPCMainHandler';
 
-const ElectronStore = require('electron-store');
+const electronStore = require('electron-store');
 
 let win: BrowserWindow = null;
-const args = process.argv.slice(1),
-  serve = args.some(val => val === '--serve');
+const args = process.argv.slice(1);
+const serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
 
@@ -59,7 +59,8 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
+  // Added 400 ms to fix the black background issue while using transparent window.
+  // More detais at https://github.com/electron/electron/issues/15947
   app.on('ready', () => setTimeout(createWindow, 400));
 
   // Quit when all windows are closed.
@@ -82,9 +83,7 @@ try {
     await ipcMainHandler.runCommand(event, key);
   });
 
-  ipcMain.handle('config', async (event, key) => {
-    return await ipcMainHandler.config(event, key);
-  });
+  ipcMain.handle('config', async (event, key) => await ipcMainHandler.config(event, key));
 
   ipcMain.handle('openSettings', async () => {
     await ipcMainHandler.openSettings();
